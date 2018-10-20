@@ -38,7 +38,7 @@ public class req {
 	
 	public static void main(String[] args) throws UnsupportedEncodingException, IOException {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("¬ведите ваш запрос");
+		System.out.println("Enter your request");
 		String request = scanner.nextLine();
 		requestGoogle(request);
 		scanner.close();
