@@ -11,7 +11,7 @@ public class getRequests {
 			
 			Map<String, String> requestMap = new HashMap<String, String>();
 			try {
-				BufferedReader reader = new BufferedReader(new FileReader("searchRequet.txt"));
+				BufferedReader reader = new BufferedReader(new FileReader("searchRequest.txt"));
 				String line;
 				String hashline;
 				while((line=reader.readLine())!=null) {
