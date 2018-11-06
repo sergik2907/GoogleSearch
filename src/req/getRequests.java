@@ -7,12 +7,11 @@ import java.util.Map;
 
 public class getRequests {
 	private static String urlRequest="http://www.google.com/search?q=";
-	//private String[] request=new 
+		public static HashMap<String, String> getRequest(){ 
 			
-		public static HashMap<String, String> getRequest(){
 			Map<String, String> requestMap = new HashMap<String, String>();
 			try {
-				BufferedReader reader = new BufferedReader(new FileReader("searchRequest.txt"));
+				BufferedReader reader = new BufferedReader(new FileReader("searchRequet.txt"));
 				String line;
 				String hashline;
 				while((line=reader.readLine())!=null) {
@@ -25,11 +24,9 @@ public class getRequests {
 					System.out.println("key: "+entry.getKey()+" Value: "+entry.getValue());
 				}
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.printLog(e);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.printLog(e);
 			}
 			
 			return (HashMap<String, String>) requestMap;
