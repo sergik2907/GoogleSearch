@@ -4,18 +4,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class Config {
 
+	final static Logger LOGGER = Logger.getLogger(Config.class);
 	private static String URL_REQUEST = "http://www.google.com/search?q=";
-	private static final Logger LOGGER = LoggerConfig.fileLogger();
 
 	public static Map<String, String> getRequestMap() {
 		Map<String, String> requestMap = new HashMap<String, String>();
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("searchRequest.txt"));
+			reader = new BufferedReader(new FileReader("searchRequest1.txt"));
 			String searchWord;
 			String searchUrl;
 			String hash;
@@ -25,14 +25,14 @@ public class Config {
 				requestMap.put(hash, searchUrl);
 			}
 		} catch (FileNotFoundException e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.error(e);
 		} catch (IOException e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.error(e);
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
-				LOGGER.info(e.getMessage());
+				LOGGER.error(e);
 			}
 		}
 		return requestMap;
