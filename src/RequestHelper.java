@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class RequestHelper {
 
@@ -14,8 +14,8 @@ public class RequestHelper {
 	private final static String REQUEST_METHOD = "GET";
 	private final static String REQUEST_PROPERTY = "User-Agent";
 	private final static int HTTP_STATUS_OK = 200;
-	private final static Logger LOGGER = LoggerConfig.fileLogger();
-	
+	private final static Logger LOGGER = Logger.getLogger(RequestHelper.class);
+
 	public static String sendRequest(String urlString) {
 		StringBuilder builder = new StringBuilder(5000);
 		InputStream inputStream = null;
@@ -36,14 +36,14 @@ public class RequestHelper {
 				builder.append(line);
 			}
 		} catch (MalformedURLException e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.error(e);
 		} catch (IOException e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.error(e);
 		} finally {
 			try {
 				bufferedReader.close();
 			} catch (IOException e) {
-				LOGGER.info(e.getMessage());
+				LOGGER.error(e);
 			}
 		}
 		return builder.toString();
@@ -53,7 +53,7 @@ public class RequestHelper {
 		try (FileWriter htmlWriter = new FileWriter("SearchPages/" + fileName + ".html")) {
 			htmlWriter.write(content);
 		} catch (IOException e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.error(e);
 		}
 	}
 }
